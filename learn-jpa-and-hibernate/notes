@@ -1,0 +1,7 @@
+SELECT * FROM course;
+
+INSERT INTO course  VALUES(1,'JAVA','ram');
+
+INSERT INTO course(id, name, author) VALUES (1,'JAVA','ram');
+
+DELETE FROM course where id=1;
