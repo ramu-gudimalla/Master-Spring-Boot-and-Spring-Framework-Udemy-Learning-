@@ -2,9 +2,10 @@ package com.Learning.learnspringframework.businesslogicexample;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
-
+//@Component
+@Repository
 public class MongoDBDataService implements DataService{
     @Override
     public int[] retrieveData() {

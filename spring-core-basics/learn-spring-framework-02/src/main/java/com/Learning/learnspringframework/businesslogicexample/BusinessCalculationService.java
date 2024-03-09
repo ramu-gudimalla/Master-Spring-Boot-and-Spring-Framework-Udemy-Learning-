@@ -1,14 +1,14 @@
 package com.Learning.learnspringframework.businesslogicexample;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-@Component
-public class BussinessCalculationService {
+//@Component
+@Service
+public class BusinessCalculationService {
     private final DataService dataService;
-    public BussinessCalculationService(DataService dataService) {
+    public BusinessCalculationService(DataService dataService) {
         this.dataService = dataService;
     }
     public int findMaX(){

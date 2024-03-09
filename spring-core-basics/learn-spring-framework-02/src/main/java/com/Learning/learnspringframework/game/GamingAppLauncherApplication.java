@@ -1,6 +1,5 @@
-package com.Learning.learnspringframework;
+package com.Learning.learnspringframework.game;
 
-import com.Learning.learnspringframework.game.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
