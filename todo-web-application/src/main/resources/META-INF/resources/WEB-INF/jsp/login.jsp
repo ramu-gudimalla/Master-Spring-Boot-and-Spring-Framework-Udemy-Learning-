@@ -1,6 +1,8 @@
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
     <head>
         <title>Login</title>
+        <link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" >
     </head>
     <body>
     <div class="container">
