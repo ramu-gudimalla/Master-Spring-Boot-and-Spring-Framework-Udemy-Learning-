@@ -15,15 +15,16 @@ import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
-//@Controller
+@NoArgsConstructor
+@Controller
 @SessionAttributes("name")
-public class todoController {
+public class todoControllerJpa {
     @Autowired
-    private TodoService todoService;
+    private TodoRepository todoRepository;
     @RequestMapping("list-todos")
     public String listAllTodos(ModelMap modelMap){
         String username = getLoggedInUsername(modelMap);
-        List<Todo> todos = todoService.findByUserName(username);
+        List<Todo> todos = todoRepository.findByUserName(username);
         modelMap.addAttribute("todos",todos);
         return "listTodos";
     }
@@ -40,17 +41,18 @@ public class todoController {
             return "todo";
         }
         String userName = getLoggedInUsername(modelMap);
-        todoService.addTodo(userName,todo.getDescription(), todo.getTargetDate(),false);
+        todo.setUserName(userName);
+        todoRepository.save(todo);
         return "redirect:list-todos";
     }
     @RequestMapping("delete-todo")
     public String deleteTodo(@RequestParam int id){
-        todoService.deleteById(id);
+        todoRepository.deleteById(id);
         return "redirect:list-todos";
     }
     @RequestMapping(value = "update-todo",method = RequestMethod.GET)
     public String showUpdateTodo(@RequestParam int id, ModelMap modelMap){
-        Todo todo = todoService.findById(id);
+        Todo todo = todoRepository.findById(id).get();
         modelMap.addAttribute(todo);
         return "todo";
     }
@@ -61,7 +63,7 @@ public class todoController {
         }
         String userName = getLoggedInUsername(modelMap);
         todo.setUserName(userName);
-        todoService.updateTodo(todo);
+        todoRepository.save(todo);
         return "redirect:list-todos";
     }
     private String getLoggedInUsername(ModelMap modelMap){

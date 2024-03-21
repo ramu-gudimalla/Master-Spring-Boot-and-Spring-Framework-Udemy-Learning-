@@ -2,7 +2,10 @@ package com.springtutorial.todowebapplication.todo;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,7 +25,6 @@ public class TodoService {
     private static int todosCount = 0;
 
     private static List<Todo> todos = new ArrayList<>();
-
     static {
         todos.add(new Todo(++todosCount, "ram","Learn AWS",
                 LocalDate.now().plusYears(1), false ));
@@ -32,7 +34,8 @@ public class TodoService {
                 LocalDate.now().plusYears(3), false ));
     }
     public List<Todo> findByUserName(String userName){
-        return todos;
+        Predicate<? super Todo> predicate = todo -> todo.getUserName().equalsIgnoreCase(userName);
+        return todos.stream().filter(predicate).toList();
     }
     public void addTodo(String userName, String description, LocalDate targetDate,boolean done){
         Todo todo = new Todo(++todosCount,userName,description,targetDate,done);
@@ -47,9 +50,9 @@ public class TodoService {
         Todo todo = todos.stream().filter(predicate).findFirst().get();
         return todo;
     }
-
     public void updateTodo(@Valid Todo todo) {
         deleteById(todo.getId());
         todos.add(todo);
     }
+
 }
