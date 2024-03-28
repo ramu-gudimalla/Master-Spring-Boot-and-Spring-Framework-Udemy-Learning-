@@ -1,5 +1,6 @@
 package com.rest.webservices.restfulwebservices.socialmediaAppDemo;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +16,21 @@ public class UserResource {
      @RequestMapping(path = "/users",method = RequestMethod.GET)
      public List<User> retrieveAllUsers(){
          return userDaoService.findAll();
-     }@RequestMapping(path = "/users/{id}",method = RequestMethod.GET)
-     public User retrieveSingleUser(@PathVariable Integer id){
+     }
+     @GetMapping("/users/{id}")
+     public User retrieveUser(@PathVariable Integer id){
          User user = userDaoService.findOne(id);
          if(user == null){
              throw new UserNotFoundException("id "+id);
          }
         return user;
      }
+     @DeleteMapping("/users/{id}")
+     public void deleteUser(@PathVariable Integer id){
+         userDaoService.deleteById(id);
+     }
      @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user){
          User savedUser = userDaoService.save(user);
          URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                   .path("/{id}").buildAndExpand(savedUser.getId()).toUri();
