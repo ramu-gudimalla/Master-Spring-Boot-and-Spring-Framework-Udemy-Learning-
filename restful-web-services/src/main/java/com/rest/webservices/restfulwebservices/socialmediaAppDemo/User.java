@@ -1,23 +1,20 @@
 package com.rest.webservices.restfulwebservices.socialmediaAppDemo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
-@ToString
 @Entity(name = "User_details")
 public class User {
     @Id
@@ -32,4 +29,45 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<Post> posts;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthDate=" + birthDate +
+                ", posts=" + posts +
+                '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
 }
