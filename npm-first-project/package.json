@@ -1,0 +1,14 @@
+{
+  "name": "first-npm-project",
+  "version": "1.0.0",
+  "description": "Basic react project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ramu Gudimalla",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.7.1"
+  }
+}
