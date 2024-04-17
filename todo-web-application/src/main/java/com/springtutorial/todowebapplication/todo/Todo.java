@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @ToString
 public class Todo {
     private Integer id;
-    private String userName;
+    private String username;
     @Size(min = 10,message = "Enter at least 10 characters")
     private String description;
     private LocalDate targetDate;

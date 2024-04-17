@@ -13,8 +13,8 @@ function Login(){
     function handlePasswordChange(event){
         setPassword(event.target.value)
     }
-    function handleSubmit(){
-        if (authContext.login(username,password)){
+    async function handleSubmit(){
+        if (await authContext.login(username,password)){
             navigate(`/Welcome/${username}`)
         }
         else{
@@ -25,7 +25,7 @@ function Login(){
         <>
         <h1>Time to login!</h1>
         <div className="LoginComponent">
-            {showErrorMessage && <div className="errorMessage">Authentication Failed</div>}
+            {showErrorMessage && <div className="errorMessage">Authentication Failed. Please check your credentials.</div>}
             <div className="loginForm">
                 <label>User Name</label>
                 <input type="text" name="username" value={username} onChange={handleUsernameChange}/>

@@ -31,12 +31,13 @@ public class TodoService {
                 LocalDate.now().plusYears(3), false ));
     }
     public List<Todo> findByUserName(String userName){
-        Predicate<? super Todo> predicate = todo -> todo.getUserName().equalsIgnoreCase(userName);
+        Predicate<? super Todo> predicate = todo -> todo.getUsername().equalsIgnoreCase(userName);
         return todos.stream().filter(predicate).toList();
     }
-    public void addTodo(String userName, String description, LocalDate targetDate,boolean done){
+    public Todo addTodo(String userName, String description, LocalDate targetDate, boolean done){
         Todo todo = new Todo(++todosCount,userName,description,targetDate,done);
         todos.add(todo);
+        return todo;
     }
     public void deleteById(int id){
         Predicate<? super Todo> predicate = todo -> todo.getId() == id;
@@ -51,5 +52,4 @@ public class TodoService {
         deleteById(todo.getId());
         todos.add(todo);
     }
-
 }

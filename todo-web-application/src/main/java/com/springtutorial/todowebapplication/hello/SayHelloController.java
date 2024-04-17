@@ -4,6 +4,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SayHelloController {
+    @GetMapping(path = "/basicAuth")
+    public String basicAuthChecker(){
+        return "Success";
+    }
     @RequestMapping("say-hello")
     @ResponseBody
     public String sayHello(){

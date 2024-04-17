@@ -31,6 +31,9 @@ function ListTodosComponent(){
     function updateTodo(id){
         navigate(`/todo/${id}`)
     }
+    function addNewTodo(id){
+        navigate(`/todo/-1`)
+    }
     
     return(
         <div className="container">
@@ -64,6 +67,7 @@ function ListTodosComponent(){
                     </tbody>
                 </table>
             </div>
+            <div className="btn btn-success m-5" onClick={addNewTodo}>Add New Todo</div>
         </div>
     )
 }
