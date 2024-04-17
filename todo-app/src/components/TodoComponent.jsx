@@ -32,7 +32,7 @@ export default function TodoComponent(){
             targetDate: values.targetDate,
             done:false
         }
-        if(id === -1){
+        if(id == -1){
             createTodoApi(username,todo)
             .then(response=>{
                 navigate('/todos')

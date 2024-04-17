@@ -31,7 +31,7 @@ function ListTodosComponent(){
     function updateTodo(id){
         navigate(`/todo/${id}`)
     }
-    function addNewTodo(id){
+    function addNewTodo(){
         navigate(`/todo/-1`)
     }
     
